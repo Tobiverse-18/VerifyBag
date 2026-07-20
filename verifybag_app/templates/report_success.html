@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+VerifyBag | Report Submitted
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/report_success.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="success-page">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+
+            ✅
+
+        </div>
+
+        <h1>
+
+            Report Submitted Successfully
+
+        </h1>
+
+        <p>
+
+            Thank you for helping fight counterfeit medicines.
+
+        </p>
+
+        <div class="report-info">
+
+            <p>
+
+                <strong>Report ID:</strong>
+
+                {{ report_id }}
+
+            </p>
+
+            <p>
+
+                <strong>Status:</strong>
+
+                Pending Review
+
+            </p>
+
+        </div>
+
+        <div class="success-buttons">
+
+            <a href="{% url 'verify_drug' %}" class="primary-btn">
+
+                Verify Another Drug
+
+            </a>
+
+            <a href="{% url 'verification_history' %}" class="secondary-btn">
+
+                View Verification History
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

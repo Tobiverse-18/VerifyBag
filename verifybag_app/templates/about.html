@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+About | VerifyBag
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+
+    <div class="about-container">
+
+        <h1>About VerifyBag</h1>
+
+        <p>
+
+            VerifyBag is a smart counterfeit drug detection platform designed
+            to help pharmacies, healthcare professionals, and consumers verify
+            medicine authenticity in seconds.
+
+        </p>
+
+    </div>
+
+</section>
+
+<section class="mission-section">
+
+    <div class="mission-card">
+
+        <h2>🎯 Our Mission</h2>
+
+        <p>
+
+            To reduce counterfeit medicines through fast verification,
+            intelligent reporting, and trusted pharmacy collaboration.
+
+        </p>
+
+    </div>
+
+    <div class="mission-card">
+
+        <h2>🌍 Our Vision</h2>
+
+        <p>
+
+            To become Africa's leading medicine verification platform,
+            helping millions stay safe from fake drugs.
+
+        </p>
+
+    </div>
+
+</section>
+
+<section class="why-section">
+
+    <h2>Why VerifyBag?</h2>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+
+            <h3>⚡ Fast Verification</h3>
+
+            <p>
+                Verify medicines within seconds using OCR and NAFDAC numbers.
+            </p>
+
+        </div>
+
+        <div class="why-card">
+
+            <h3>🛡 Secure Platform</h3>
+
+            <p>
+                Protect pharmacies and customers from counterfeit medicines.
+            </p>
+
+        </div>
+
+        <div class="why-card">
+
+            <h3>📊 Smart Analytics</h3>
+
+            <p>
+                Track verification history and counterfeit reports.
+            </p>
+
+        </div>
+
+        <div class="why-card">
+
+            <h3>📍 Community Reporting</h3>
+
+            <p>
+                Report suspicious drugs to help create a safer healthcare ecosystem.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="values-section">
+
+    <h2>Our Core Values</h2>
+
+    <div class="values-grid">
+
+        <div class="value-box">
+            🔒 Trust
+        </div>
+
+        <div class="value-box">
+            ⚖ Integrity
+        </div>
+
+        <div class="value-box">
+            💡 Innovation
+        </div>
+
+        <div class="value-box">
+            ❤️ Public Safety
+        </div>
+
+    </div>
+
+</section>
+
+<section class="about-cta">
+
+    <h2>Ready to Verify Medicines?</h2>
+
+    <p>
+
+        Join VerifyBag and help fight counterfeit drugs across Nigeria.
+
+    </p>
+
+    <a href="{% url 'verify_drug' %}" class="cta-btn">
+
+        Verify Drug
+
+    </a>
+
+</section>
+
+{% endblock %}

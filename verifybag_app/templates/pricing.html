@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+VerifyBag | Pricing
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/pricing.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="pricing-hero">
+
+    <div class="hero-content">
+
+        <h1>Simple & Affordable Pricing</h1>
+
+        <p>
+
+            Choose a plan that fits your pharmacy's needs.
+
+        </p>
+
+    </div>
+
+</section>
+
+<section class="pricing-section">
+
+    <div class="pricing-card">
+
+        <span class="plan">Free Trial</span>
+
+        <h2>₦0</h2>
+
+        <p class="duration">14 Days</p>
+
+        <ul>
+
+            <li>✔ Drug Verification</li>
+
+            <li>✔ OCR Scanning</li>
+
+            <li>✔ Verification History</li>
+
+            <li>✔ Email Notifications</li>
+
+            <li>✔ Community Support</li>
+
+        </ul>
+
+        <a href="{% url 'register' %}" class="pricing-btn">
+
+            Start Free
+
+        </a>
+
+    </div>
+
+    <div class="pricing-card featured">
+
+        <span class="popular">
+
+            Most Popular
+
+        </span>
+
+        <span class="plan">
+
+            Pharmacy Pro
+
+        </span>
+
+        <h2>₦5,000</h2>
+
+        <p class="duration">Per Month</p>
+
+        <ul>
+
+            <li>✔ Unlimited Drug Verification</li>
+
+            <li>✔ OCR Image Scanning</li>
+
+            <li>✔ Fake Drug Reporting</li>
+
+            <li>✔ Dashboard & Analytics</li>
+
+            <li>✔ Email Notifications</li>
+
+            <li>✔ Priority Support</li>
+
+        </ul>
+
+        <a href="{% url 'register' %}" class="pricing-btn">
+
+            Get Started
+
+        </a>
+
+    </div>
+
+</section>
+
+<section class="pricing-footer">
+
+    <h2>No Hidden Charges</h2>
+
+    <p>
+
+        Secure, transparent and affordable pricing for pharmacies across Nigeria.
+
+    </p>
+
+</section>
+
+{% endblock %}

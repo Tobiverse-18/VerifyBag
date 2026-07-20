@@ -1,0 +1,661 @@
+/* ======================================
+   GOOGLE FONT
+====================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* ======================================
+   RESET
+====================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f9ff;
+}
+
+/* ======================================
+   PAGE
+====================================== */
+
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px 20px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #eef6ff,
+    #f8fbff,
+    #ffffff);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* ======================================
+   BACKGROUND BLOBS
+====================================== */
+
+.login-page::before{
+
+    content:"";
+
+    width:520px;
+    height:520px;
+
+    background:rgba(37,99,235,.08);
+
+    border-radius:50%;
+
+    position:absolute;
+
+    left:-140px;
+    top:-160px;
+
+    filter:blur(50px);
+
+}
+
+.login-page::after{
+
+    content:"";
+
+    width:420px;
+    height:420px;
+
+    background:rgba(14,165,233,.08);
+
+    border-radius:50%;
+
+    position:absolute;
+
+    right:-120px;
+    bottom:-120px;
+
+    filter:blur(50px);
+
+}
+
+/* ======================================
+   CONTAINER
+====================================== */
+
+.login-container{
+
+    width:100%;
+
+    max-width:1300px;
+
+    display:grid;
+
+    grid-template-columns:1fr 520px;
+
+    gap:60px;
+
+    align-items:center;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ======================================
+   LEFT SIDE
+====================================== */
+
+.login-left h1{
+
+    font-size:52px;
+
+    line-height:1.2;
+
+    color:#0f172a;
+
+    margin:20px 0;
+
+}
+
+.login-left p{
+
+    font-size:18px;
+
+    color:#64748b;
+
+    line-height:1.8;
+
+    margin-bottom:40px;
+
+}
+
+/* ======================================
+   TAG
+====================================== */
+
+.tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:10px 22px;
+
+    border-radius:100px;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+/* ======================================
+   FEATURES
+====================================== */
+
+.feature{
+
+    display:flex;
+
+    gap:18px;
+
+    margin-bottom:28px;
+
+}
+
+.icon{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:22px;
+
+    flex-shrink:0;
+
+}
+
+.feature h3{
+
+    color:#0f172a;
+
+    margin-bottom:5px;
+
+}
+
+.feature p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+/* ======================================
+   LOGIN CARD
+====================================== */
+
+.login-card{
+
+    background:#fff;
+
+    padding:45px;
+
+    border-radius:28px;
+
+    border:1px solid #e5e7eb;
+
+    box-shadow:
+    0 25px 70px rgba(15,23,42,.12);
+
+}
+
+.login-card h2{
+
+    font-size:34px;
+
+    color:#0f172a;
+
+}
+
+.login-card>p{
+
+    margin-top:10px;
+
+    margin-bottom:35px;
+
+    color:#64748b;
+
+}
+
+/* ======================================
+   FORM
+====================================== */
+
+.input-group{
+
+    margin-bottom:22px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#1e293b;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    height:58px;
+
+    padding:0 18px;
+
+    border:1px solid #dbeafe;
+
+    border-radius:14px;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.35s;
+
+    background:#fff;
+
+}
+
+.input-group input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+
+/* ======================================
+   PASSWORD BOX
+====================================== */
+
+.password-box{
+
+    display:flex;
+
+    align-items:center;
+
+    border:1px solid #dbeafe;
+
+    border-radius:14px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+.password-box:focus-within{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+.password-box input{
+
+    border:none;
+
+    box-shadow:none;
+
+}
+
+.password-box button{
+
+    width:60px;
+
+    height:58px;
+
+    border:none;
+
+    background:none;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}
+
+
+/* ======================================
+   LOGIN OPTIONS
+====================================== */
+
+.login-options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:25px 0;
+
+    font-size:14px;
+
+}
+
+.login-options label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#64748b;
+
+}
+
+.login-options a{
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+
+/* ======================================
+   BUTTONS
+====================================== */
+
+.login-btn{
+
+    width:100%;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.login-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-3px);
+
+}
+
+.google-btn{
+
+    width:100%;
+
+    height:58px;
+
+    margin-top:20px;
+
+    border:1px solid #dbeafe;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:.35s;
+
+}
+
+.google-btn:hover{
+
+    background:#f8fafc;
+
+}
+
+
+/* ======================================
+   DIVIDER
+====================================== */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin:30px 0;
+
+}
+
+.divider::before,
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:#e5e7eb;
+
+}
+
+.divider span{
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+}
+
+
+/* ======================================
+   REGISTER LINK
+====================================== */
+
+.register-link{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#64748b;
+
+}
+
+.register-link a{
+
+    text-decoration:none;
+
+    color:#2563eb;
+
+    font-weight:600;
+
+}
+
+
+/* ======================================
+   DJANGO MESSAGES
+====================================== */
+
+.message{
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+.message.success{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+.message.error{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+
+@media(max-width:992px){
+
+    .login-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .login-left{
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .login-page{
+
+        padding:40px 15px;
+
+    }
+
+    .login-card{
+
+        padding:30px 20px;
+
+    }
+
+    .login-left h1{
+
+        font-size:34px;
+
+    }
+
+    .feature{
+
+        flex-direction:column;
+
+        align-items:center;
+
+        text-align:center;
+
+    }
+
+    .login-options{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+.message{
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+    font-weight: 600;
+}
+
+.message.info{
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-left: 4px solid #2563eb;
+}
+
+.message.error{
+    background: #fee2e2;
+    color: #b91c1c;
+    border-left: 4px solid #dc2626;
+}
+
+.message.success{
+    background: #dcfce7;
+    color: #166534;
+    border-left: 4px solid #22c55e;
+}

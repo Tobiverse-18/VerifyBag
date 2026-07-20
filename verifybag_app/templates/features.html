@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+VerifyBag | Features
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/features.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="features-hero">
+
+    <div class="hero-content">
+
+        <h1>Powerful Features</h1>
+
+        <p>
+
+            Everything pharmacies need to detect counterfeit medicines
+            quickly, securely, and efficiently.
+
+        </p>
+
+    </div>
+
+</section>
+
+<section class="features-grid">
+
+    <div class="feature-card">
+
+        <div class="icon">🔍</div>
+
+        <h3>Drug Verification</h3>
+
+        <p>
+
+            Verify medicine authenticity instantly using the NAFDAC number.
+
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">📷</div>
+
+        <h3>OCR Scanning</h3>
+
+        <p>
+
+            Upload a drug image and let OCR extract the NAFDAC number automatically.
+
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">🚨</div>
+
+        <h3>Fake Drug Reporting</h3>
+
+        <p>
+
+            Report suspicious medicines and receive a unique report ID.
+
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">📈</div>
+
+        <h3>Analytics Dashboard</h3>
+
+        <p>
+
+            Track verifications, reports and pharmacy activity in one place.
+
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">📧</div>
+
+        <h3>Email Notifications</h3>
+
+        <p>
+
+            Receive important updates after registration and future activities.
+
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">🏥</div>
+
+        <h3>Pharmacy Management</h3>
+
+        <p>
+
+            Manage pharmacy profiles, approvals and account status securely.
+
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">🔒</div>
+
+        <h3>Secure Authentication</h3>
+
+        <p>
+
+            Protected login system with secure account management.
+
+        </p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">⚡</div>
+
+        <h3>Fast Performance</h3>
+
+        <p>
+
+            Built for speed so pharmacies can verify medicines within seconds.
+
+        </p>
+
+    </div>
+
+</section>
+
+<section class="feature-cta">
+
+    <h2>Start Verifying Medicines Today</h2>
+
+    <p>
+
+        Protect patients and strengthen trust with VerifyBag.
+
+    </p>
+
+    <a href="{% url 'verify_drug' %}" class="cta-btn">
+
+        Verify Drug
+
+    </a>
+
+</section>
+
+{% endblock %}

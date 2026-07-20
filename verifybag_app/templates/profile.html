@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+VerifyBag | Profile
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-page">
+
+    <div class="profile-card">
+
+        <h1>👤 My Profile</h1>
+
+        {% if profile.is_pharmacy_approved %}
+
+        <div class="success-box">
+
+            ✅ Pharmacy Approved
+
+        </div>
+
+        {% else %}
+
+        <div class="pending-box">
+
+            ⏳ Waiting For Admin Approval
+
+        </div>
+
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <div class="profile-image">
+
+                {% if profile.profile_picture %}
+
+                    <img
+                        src="{{ profile.profile_picture.url }}"
+                        alt="Profile Picture">
+
+                {% else %}
+
+                    <img
+                        src="{% static 'images/default-user.png' %}"
+                        alt="Default User">
+
+                {% endif %}
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Profile Picture</label>
+
+                <input
+                    type="file"
+                    name="profile_picture">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Full Name</label>
+
+                <input
+                    type="text"
+                    value="{{ request.user.first_name }}"
+                    readonly>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    value="{{ request.user.email }}"
+                    readonly>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Pharmacy Name</label>
+
+                <input
+                    type="text"
+                    name="pharmacy_name"
+                    value="{{ profile.pharmacy_name }}">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="text"
+                    name="phone"
+                    value="{{ profile.phone }}">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>State</label>
+
+                <input
+                    type="text"
+                    name="state"
+                    value="{{ profile.state }}">
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Pharmacy License Number</label>
+
+                <input
+                    type="text"
+                    name="pharmacy_license"
+                    value="{{ profile.pharmacy_license }}"
+                    placeholder="Enter Pharmacy License">
+
+            </div>
+
+            <button
+                class="save-btn"
+                type="submit">
+
+                💾 Save Profile
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

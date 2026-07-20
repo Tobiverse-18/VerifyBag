@@ -1,0 +1,225 @@
+.contact-hero{
+
+    background:linear-gradient(135deg,#0f172a,#2563eb);
+
+    color:white;
+
+    text-align:center;
+
+    padding:120px 20px;
+
+}
+
+.hero-content{
+
+    max-width:800px;
+
+    margin:auto;
+
+}
+
+.hero-content h1{
+
+    font-size:3rem;
+
+    margin-bottom:20px;
+
+}
+
+.hero-content p{
+
+    font-size:1.1rem;
+
+}
+
+.contact-section{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:60px;
+
+    justify-content:center;
+
+    padding:90px 10%;
+
+}
+
+.contact-info{
+
+    flex:1;
+
+    min-width:320px;
+
+}
+
+.contact-info h2{
+
+    margin-bottom:20px;
+
+    color:#2563eb;
+
+}
+
+.contact-info p{
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+.info-box{
+
+    margin-top:30px;
+
+    padding:20px;
+
+    border-left:5px solid #2563eb;
+
+    background:#f8fafc;
+
+    border-radius:10px;
+
+}
+
+.info-box h4{
+
+    margin-bottom:8px;
+
+    color:#0f172a;
+
+}
+
+.contact-form{
+
+    flex:1;
+
+    min-width:320px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.contact-form h2{
+
+    margin-bottom:25px;
+
+    color:#2563eb;
+
+}
+
+.contact-form form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.contact-form input,
+
+.contact-form textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.contact-form input:focus,
+
+.contact-form textarea:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 10px rgba(37,99,235,.2);
+
+}
+
+.contact-form textarea{
+
+    resize:vertical;
+
+}
+
+.contact-form button{
+
+    padding:16px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.contact-form button:hover{
+
+    background:#1d4ed8;
+
+}
+
+@media(max-width:768px){
+
+    .contact-section{
+
+        padding:60px 20px;
+
+    }
+
+    .hero-content h1{
+
+        font-size:2.3rem;
+
+    }
+
+}
+
+.success-message{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+    border-left:5px solid #16a34a;
+
+    font-weight:600;
+
+}

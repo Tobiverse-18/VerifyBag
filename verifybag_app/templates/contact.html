@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+VerifyBag | Contact
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="contact-hero">
+
+    <div class="hero-content">
+
+        <h1>Contact Us</h1>
+
+        <p>
+
+            We'd love to hear from you. Reach out to us anytime.
+
+        </p>
+
+    </div>
+
+</section>
+
+<section class="contact-section">
+
+    <div class="contact-info">
+
+        <h2>Get In Touch</h2>
+
+        <p>
+            Have questions about VerifyBag or need support?
+            Our team is ready to assist you.
+        </p>
+
+        <div class="info-box">
+
+            <h4>Email</h4>
+
+            <p>verifybagteam@gmail.com</p>
+
+        </div>
+
+        <div class="info-box">
+
+            <h4>Phone</h4>
+
+            <p>+234 9039008012</p>
+
+            <p>+234 8111974893</p>
+            
+
+        </div>
+
+        <div class="info-box">
+
+            <h4>Location</h4>
+
+            <p>Lagos, Nigeria</p>
+
+        </div>
+
+    </div>
+
+    <div class="contact-form">
+
+        <h2>Send a Message</h2>
+
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="success-message">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                required>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required>
+
+            <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                required>
+
+            <textarea
+                rows="6"
+                name="message"
+                placeholder="Your Message"
+                required></textarea>
+
+            <button type="submit">
+
+                Send Message
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,494 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+VerifyBag | Verify Drug
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/verify_drug.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="verify-page">
+
+    <div class="verify-container">
+
+        <!-- HEADER -->
+
+        <div class="verify-header">
+
+            <div>
+
+                <h1>
+
+                    Verify Drug
+
+                </h1>
+
+                <p>
+
+                    Upload a medicine image or enter the NAFDAC number to verify its authenticity.
+
+                </p>
+
+            </div>
+
+            <a href="{% url 'logout' %}" class="logout-btn">
+
+                Logout
+
+            </a>
+
+        </div>
+
+        {% if messages %}
+
+    {% for message in messages %}
+
+        <div class="alert-message">
+
+            {{ message }}
+
+        </div>
+
+    {% endfor %}
+
+{% endif %}
+
+        <!-- WELCOME -->
+
+        <div class="welcome-card">
+
+            <h2>
+
+                👋 Welcome,
+
+                {{ request.user.first_name|default:request.user.username }}
+
+            </h2>
+
+            <p>
+
+                Protect patients by verifying medicines before dispensing them.
+
+            </p>
+
+        </div>
+
+        <!-- VERIFY CARD -->
+
+        <div class="verify-card">
+
+            <h2>
+
+                Verify Medicine
+
+            </h2>
+
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- IMAGE -->
+
+                <div class="upload-box" id="uploadBox">
+
+    <input
+        type="file"
+        id="drugImage"
+        name="drug_image"
+        accept="image/*"
+        hidden>
+
+    <label for="drugImage" class="upload-label">
+
+        <div id="uploadContent">
+
+            <div class="upload-icon">
+
+                📷
+
+            </div>
+
+            <h3>Upload Drug Image</h3>
+
+            <p>Click or drag a medicine image here</p>
+
+        </div>
+
+    </label>
+
+</div>
+
+                </div>
+
+                <div class="divider">
+
+                    <span>
+
+                        OR
+
+                    </span>
+
+                </div>
+
+                <!-- NAFDAC -->
+
+                <div class="input-group">
+
+                    <label>
+
+                        Enter NAFDAC Number
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nafdacNumber"
+                        name="nafdac_number"
+                        placeholder="Example: A1-2345">
+
+                </div>
+
+                <button
+                    class="verify-btn"
+                    type="submit">
+
+                    Verify Drug
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- RESULT -->
+
+        <div class="result-card">
+
+            <h2>
+
+                Verification Result
+
+            </h2>
+
+            {% if verification %}
+
+            <div class="verification-result">
+
+                <h3>
+
+                    ✅ Verification Successful
+
+                </h3>
+
+                {% if verification.drug_image %}
+
+                <img
+                    src="{{ verification.drug_image.url }}"
+                    class="uploaded-drug"
+                    alt="Uploaded Drug">
+
+                {% endif %}
+
+                
+                <p>
+
+                    <strong>NAFDAC Number:</strong>
+
+                    {{ verification.nafdac_number|default:"Not detected" }}
+
+                </p>
+
+                {% if detected_nafdac %}
+
+                <p>
+
+                    <strong>OCR Detected:</strong>
+
+                    {{ detected_nafdac }}
+
+                </p>
+
+                {% endif %}
+
+                <p>
+
+                    <strong>Status:</strong>
+
+                    {{ verification.result }}
+
+                </p>
+
+                {% if approved %}
+
+                <hr>
+
+                <p>
+
+                    <strong>Drug Name:</strong>
+
+                    {{ approved.drug_name }}
+
+                </p>
+
+                <p>
+
+                    <strong>Manufacturer:</strong>
+
+                    {{ approved.manufacturer }}
+
+                </p>
+
+                <p>
+
+                    <strong>Expiry Date:</strong>
+
+                    {{ approved.expiry_date }}
+
+                </p>
+
+                <p>
+
+                    <strong>Batch Number:</strong>
+
+                    {{ approved.batch_number }}
+
+                </p>
+
+                <p>
+
+                    <strong>Dosage Form:</strong>
+
+                    {{ approved.dosage_form }}
+
+                </p>
+
+                <p>
+
+                    <strong>Strength:</strong>
+
+                    {{ approved.strength }}
+
+                </p>
+
+                {% endif %}
+
+                {% if show_report %}
+
+<div class="report-card">
+
+    <h2>
+
+        ⚠ Report Suspicious Drug
+
+    </h2>
+
+    <p>
+
+        This medicine could not be verified. Help protect other patients by reporting it.
+
+    </p>
+
+    <form
+        method="POST"
+        action="{% url 'report_fake_drug' verification.id %}">
+
+        {% csrf_token %}
+
+        <div class="input-group">
+
+            <label>
+
+                Pharmacy Name
+
+            </label>
+
+            <input
+                type="text"
+                name="pharmacy_name"
+                required>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>
+
+                State
+
+            </label>
+
+            <input
+                type="text"
+                name="state"
+                placeholder="e.g. Lagos"
+                required>
+
+        </div>
+
+        <div class="input-group">
+
+            <label>
+
+                Reason
+
+            </label>
+
+            <textarea
+                name="reason"
+                rows="5"
+                required></textarea>
+
+        </div>
+
+        <button
+            type="submit"
+            class="report-btn">
+
+            🚨 Report Drug
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endif %}
+
+
+            </div>
+
+            {% else %}
+
+            <div class="result-placeholder">
+
+                Upload a medicine image or enter a NAFDAC number to begin verification.
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- RECENT -->
+
+        <div class="recent-card">
+
+            <div class="recent-header">
+
+                <h2>
+
+                    Recent Verifications
+
+                </h2>
+
+                <a href="{% url 'verification_history' %}">
+
+                    View History
+
+                </a>
+
+            </div>
+
+            <ul>
+
+                {% if recent_verifications %}
+
+                    {% for item in recent_verifications %}
+
+                    <li>
+
+                        <strong>
+
+                            {{ item.nafdac_number|default:"No NAFDAC Number" }}
+
+                        </strong>
+
+                        <br>
+
+                        {{ item.result }}
+
+                        <small style="display:block;color:#64748b;">
+
+                            {{ item.created_at|date:"M d, Y H:i" }}
+
+                        </small>
+
+                    </li>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <li>
+
+                        No verifications yet.
+
+                    </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ======================================
+AI SCAN OVERLAY
+====================================== -->
+
+<div class="scanner-overlay" id="scannerOverlay">
+
+    <div class="scanner-box">
+
+        <div class="scanner-icon">
+
+            🤖
+
+        </div>
+
+        <h2>
+
+            VerifyBag AI Scanner
+
+        </h2>
+
+        <p id="scanStatus">
+
+            Uploading Medicine...
+
+        </p>
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progressFill">
+
+            </div>
+
+        </div>
+
+        <div class="scanner-loader">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/verify_drug.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,973 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+VerifyBag | Home
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <!-- Animated Background -->
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="hero-container">
+
+        <!-- LEFT -->
+
+        <div class="hero-left">
+
+            <span class="hero-badge">
+                🛡 AI Powered Drug Verification
+            </span>
+
+            <h1>
+
+                Verify Every Medicine
+
+                <span>Before It Reaches</span>
+
+                Your Hands.
+
+            </h1>
+
+            <p>
+
+                VerifyBag helps pharmacies instantly detect counterfeit
+                medicines using OCR technology, NAFDAC verification and
+                intelligent security checks.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{% url 'verify_drug' %}" class="primary-btn">
+                    Verify Drug
+                </a>
+
+                <a href="{% url 'features' %}" class="secondary-btn">
+                    Learn More
+                </a>
+
+            </div>
+
+            <div class="hero-trust">
+
+                <div>✔ Instant Verification</div>
+
+                <div>✔ Trusted Pharmacies</div>
+
+                <div>✔ NAFDAC Database</div>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="hero-right">
+
+            <div class="shield-card">
+
+                🛡
+
+                <h2>99.9%</h2>
+
+                <p>Verification Accuracy</p>
+
+            </div>
+
+            <div class="floating-card card1">
+
+                💊 Drug Scan
+
+            </div>
+
+            <div class="floating-card card2">
+
+                ✅ Authentic
+
+            </div>
+
+            <div class="floating-card card3">
+
+                📍 Live Alert
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     TRUSTED PHARMACIES
+========================================== -->
+
+<section class="trusted">
+
+    <div class="trusted-heading">
+
+        <p>TRUSTED BY PHARMACIES ACROSS NIGERIA</p>
+
+    </div>
+
+    <div class="logo-slider">
+
+        <div class="logo-track" id="logoTrack">
+
+            <div class="logo-card">
+                🏥 MediCare Pharmacy
+            </div>
+
+            <div class="logo-card">
+                💊 HealthPlus
+            </div>
+
+            <div class="logo-card">
+                🩺 Alpha Pharmacy
+            </div>
+
+            <div class="logo-card">
+                🧬 CareMed
+            </div>
+
+            <div class="logo-card">
+                ❤️ LifeCare
+            </div>
+
+            <!-- Duplicate for seamless scrolling -->
+
+            <div class="logo-card">
+                🏥 MediCare Pharmacy
+            </div>
+
+            <div class="logo-card">
+                💊 HealthPlus
+            </div>
+
+            <div class="logo-card">
+                🩺 Alpha Pharmacy
+            </div>
+
+            <div class="logo-card">
+                🧬 CareMed
+            </div>
+
+            <div class="logo-card">
+                ❤️ LifeCare
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     THE COUNTERFEIT DRUG PROBLEM
+========================================== -->
+
+<section class="problem">
+
+    <div class="problem-container">
+
+        <div class="problem-left">
+
+            <span class="section-tag">
+                🚨 The Problem
+            </span>
+
+            <h2>
+                Counterfeit Medicines Are A Silent Threat To Millions.
+            </h2>
+
+            <p>
+
+                Fake medicines continue to endanger lives, damage trust in
+                healthcare, and cost Nigeria billions every year. VerifyBag
+                empowers pharmacies to instantly verify medicines before they
+                reach patients.
+
+            </p>
+
+            <div class="problem-buttons">
+
+                <a href="#" class="primary-btn">
+                    Verify a Drug
+                </a>
+
+                <a href="#" class="secondary-btn">
+                    Learn More
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="problem-right">
+
+            <div class="problem-card">
+
+                <div class="problem-icon">
+                    💀
+                </div>
+
+                <h3>Health Risk</h3>
+
+                <p>
+                    Fake medicines may contain dangerous or ineffective ingredients.
+                </p>
+
+            </div>
+
+            <div class="problem-card">
+
+                <div class="problem-icon">
+                    💰
+                </div>
+
+                <h3>Economic Loss</h3>
+
+                <p>
+                    Counterfeit drugs cost Nigeria billions every year.
+                </p>
+
+            </div>
+
+            <div class="problem-card">
+
+                <div class="problem-icon">
+                    🛡️
+                </div>
+
+                <h3>Lost Trust</h3>
+
+                <p>
+                    Patients lose confidence when medicines fail to work.
+                </p>
+
+            </div>
+
+            <div class="problem-card">
+
+                <div class="problem-icon">
+                    ⚡
+                </div>
+
+                <h3>Instant Solution</h3>
+
+                <p>
+                    VerifyBag helps pharmacies detect suspicious medicines in seconds.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     WHY VERIFYBAG
+========================================== -->
+
+<section class="why-section">
+
+    <div class="section-title">
+
+        <span>WHY VERIFYBAG</span>
+
+        <h2>
+            Smarter. Faster. Safer.
+        </h2>
+
+        <p>
+            Everything your pharmacy needs to verify medicines with confidence.
+        </p>
+
+    </div>
+
+    <div class="why-grid">
+
+        <div class="why-card reveal">
+
+            <div class="why-icon">🤖</div>
+
+            <h3>AI Verification</h3>
+
+            <p>
+                Intelligent verification powered by modern AI technology.
+            </p>
+
+        </div>
+
+        <div class="why-card reveal">
+
+            <div class="why-icon">📷</div>
+
+            <h3>OCR Scanner</h3>
+
+            <p>
+                Instantly extract NAFDAC numbers from medicine packages.
+            </p>
+
+        </div>
+
+        <div class="why-card reveal">
+
+            <div class="why-icon">🛡</div>
+
+            <h3>NAFDAC Check</h3>
+
+            <p>
+                Compare every scan against verified records.
+            </p>
+
+        </div>
+
+        <div class="why-card reveal">
+
+            <div class="why-icon">⚡</div>
+
+            <h3>Instant Results</h3>
+
+            <p>
+                Get medicine authenticity in just a few seconds.
+            </p>
+
+        </div>
+
+        <div class="why-card reveal">
+
+            <div class="why-icon">📊</div>
+
+            <h3>Dashboard</h3>
+
+            <p>
+                View reports, scan history and pharmacy activity.
+            </p>
+
+        </div>
+
+        <div class="why-card reveal">
+
+            <div class="why-icon">🚨</div>
+
+            <h3>Community Alerts</h3>
+
+            <p>
+                Report suspicious medicines to help protect everyone.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     HOW VERIFYBAG WORKS
+========================================== -->
+
+<section class="workflow">
+
+    <div class="workflow-heading">
+
+        <span class="section-tag">
+            ⚙️ HOW VERIFYBAG WORKS
+        </span>
+
+        <h2>
+            Verify Medicines In Four Simple Steps
+        </h2>
+
+        <p>
+            From uploading a medicine package to receiving an instant
+            authenticity result, VerifyBag makes verification fast,
+            accurate and effortless.
+        </p>
+
+    </div>
+
+    <div class="workflow-timeline">
+
+        <div class="timeline-line"></div>
+
+        <!-- Step 1 -->
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <div class="step-card">
+
+                <div class="step-icon">📷</div>
+
+                <h3>Upload Medicine</h3>
+
+                <p>
+                    Upload or capture a clear image of the medicine package
+                    using your phone or tablet.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Step 2 -->
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <div class="step-card">
+
+                <div class="step-icon">🔍</div>
+
+                <h3>OCR Reads NAFDAC Number</h3>
+
+                <p>
+                    VerifyBag automatically extracts the NAFDAC registration
+                    number using OCR technology.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Step 3 -->
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <div class="step-card">
+
+                <div class="step-icon">🛡️</div>
+
+                <h3>Database Verification</h3>
+
+                <p>
+                    The extracted information is checked against verified
+                    medicine records.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Step 4 -->
+
+        <div class="workflow-step">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <div class="step-card">
+
+                <div class="step-icon">✅</div>
+
+                <h3>Instant Result</h3>
+
+                <p>
+                    Receive an instant Authentic or Suspicious result and
+                    report fake medicines if necessary.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     DASHBOARD PREVIEW
+========================================== -->
+
+<section class="dashboard-preview">
+
+    <div class="dashboard-content">
+
+        <div class="dashboard-left">
+
+            <span class="section-tag">
+                📊 LIVE DASHBOARD
+            </span>
+
+            <h2>
+                Everything You Need In One Dashboard
+            </h2>
+
+            <p>
+                Monitor medicine verifications, manage pharmacy activities,
+                view verification history and receive instant alerts from one
+                powerful dashboard.
+            </p>
+
+            <ul class="dashboard-list">
+
+                <li>✔ Real-time verification history</li>
+
+                <li>✔ Pharmacy performance analytics</li>
+
+                <li>✔ Counterfeit drug reports</li>
+
+                <li>✔ OCR scan history</li>
+
+                <li>✔ Live notification center</li>
+
+            </ul>
+
+            <a href="#" class="primary-btn">
+                Explore Dashboard
+            </a>
+
+        </div>
+
+        <div class="dashboard-right">
+
+            <div class="dashboard-window">
+
+                <div class="window-header">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+                <div class="dashboard-body">
+
+                    <div class="stat-box">
+
+                        <h3>2,847</h3>
+
+                        <p>Medicines Verified</p>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>96%</h3>
+
+                        <p>Authentic</p>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <h3>118</h3>
+
+                        <p>Suspicious Reports</p>
+
+                    </div>
+
+                    <div class="chart-box">
+
+                        📈 Analytics Chart
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     LIVE ALERT MAP
+========================================== -->
+
+<section class="alert-map">
+
+    <div class="alert-heading">
+
+        <span class="section-tag">
+            🚨 LIVE ALERT MAP
+        </span>
+
+        <h2>
+            Tracking Suspicious Medicines Across Nigeria
+        </h2>
+
+        <p>
+            Every reported counterfeit medicine helps protect another
+            pharmacy. View reports submitted by trusted VerifyBag users.
+        </p>
+
+    </div>
+
+    <div class="alert-container">
+
+        <div class="map-card">
+
+            <div class="map-placeholder">
+
+                🗺️
+
+                <h3>Nigeria Interactive Map</h3>
+
+                <p>
+                    Live counterfeit reports will appear here.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="alert-feed">
+
+            <div class="alert-item">
+
+                <span class="alert-status danger"></span>
+
+                <div>
+
+                    <h4>Paracetamol Batch</h4>
+
+                    <p>Lagos • 5 minutes ago</p>
+
+                </div>
+
+            </div>
+
+            <div class="alert-item">
+
+                <span class="alert-status warning"></span>
+
+                <div>
+
+                    <h4>Amoxicillin Batch</h4>
+
+                    <p>Abuja • 18 minutes ago</p>
+
+                </div>
+
+            </div>
+
+            <div class="alert-item">
+
+                <span class="alert-status success"></span>
+
+                <div>
+
+                    <h4>Vitamin C Batch</h4>
+
+                    <p>Ibadan • Verified Authentic</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     LIVE STATISTICS
+========================================== -->
+
+<section class="statistics">
+
+    <div class="statistics-heading">
+
+        <span class="section-tag">
+            📈 LIVE STATISTICS
+        </span>
+
+        <h2>
+            Protecting Pharmacies Every Day
+        </h2>
+
+        <p>
+            Thousands of medicine verifications are performed through
+            VerifyBag, helping pharmacies make safer decisions.
+        </p>
+
+    </div>
+
+    <div class="statistics-grid">
+
+        <div class="stat-card">
+
+            <h3 class="counter" data-target="15280">0</h3>
+
+            <p>Medicines Verified</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h3 class="counter" data-target="620">0</h3>
+
+            <p>Registered Pharmacies</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h3 class="counter" data-target="438">0</h3>
+
+            <p>Fake Drugs Reported</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h3 class="counter" data-target="4.8">0</h3>
+
+            <p>Average Verification Time</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     SUCCESS STORIES
+========================================== -->
+
+<section class="success-stories">
+
+    <div class="success-heading">
+
+        <span class="section-tag">
+            ⭐ SUCCESS STORIES
+        </span>
+
+        <h2>
+            Helping Pharmacies Build Trust
+        </h2>
+
+        <p>
+            Discover how VerifyBag helps pharmacies improve patient safety,
+            strengthen customer confidence and prevent counterfeit medicines
+            from reaching the public.
+        </p>
+
+    </div>
+
+    <div class="stories-grid">
+
+        <div class="story-card">
+
+            <div class="story-badge">
+                Lagos
+            </div>
+
+            <h3>
+                Prevented A Counterfeit Sale
+            </h3>
+
+            <p>
+
+                A pharmacy detected a suspicious antibiotic before it reached
+                a patient after VerifyBag flagged the NAFDAC number.
+
+            </p>
+
+            <span>
+                Pharmacy Owner
+            </span>
+
+        </div>
+
+        <div class="story-card">
+
+            <div class="story-badge">
+                Abuja
+            </div>
+
+            <h3>
+                Improved Customer Trust
+            </h3>
+
+            <p>
+
+                Customers now request medicine verification before purchasing,
+                increasing confidence in the pharmacy.
+
+            </p>
+
+            <span>
+                Community Pharmacy
+            </span>
+
+        </div>
+
+        <div class="story-card">
+
+            <div class="story-badge">
+                Ibadan
+            </div>
+
+            <h3>
+                Faster Daily Verification
+            </h3>
+
+            <p>
+
+                Staff reduced medicine verification time from several minutes
+                to just a few seconds.
+
+            </p>
+
+            <span>
+                Hospital Pharmacy
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+     FREQUENTLY ASKED QUESTIONS
+========================================== -->
+
+<section class="faq">
+
+    <div class="faq-heading">
+
+        <span class="section-tag">
+            ❓ FAQs
+        </span>
+
+        <h2>
+            Frequently Asked Questions
+        </h2>
+
+        <p>
+            Everything you need to know about VerifyBag and medicine verification.
+        </p>
+
+    </div>
+
+    <div class="faq-container">
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    How does VerifyBag verify medicines?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    VerifyBag uses OCR technology, NAFDAC verification and intelligent security checks to determine whether a medicine appears authentic.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Is VerifyBag available for all pharmacies?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Yes. VerifyBag is designed for independent pharmacies, hospitals, distributors and healthcare organizations.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Can I report counterfeit medicines?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Yes. Registered users can submit suspicious medicines which help improve the nationwide counterfeit alert system.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="faq-item">
+
+            <button class="faq-question">
+
+                <span>
+                    Does VerifyBag store verification history?
+                </span>
+
+                <span class="faq-icon">+</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Yes. Every verification is saved to your dashboard, making it easy to review previous medicine checks.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
+

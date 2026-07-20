@@ -1,0 +1,203 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
+    <meta charset="UTF-8">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        VerifyBag
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    {% block head %}
+    {% endblock %}
+
+
+    {% block css %}
+    {% endblock %}
+    
+
+</head>
+
+<body>
+
+            <div id="loader">
+
+                <div class="loader-content">
+
+                    <div class="loader-logo">
+
+                        <div class="loader-shield">
+
+                            <span class="loader-check">✓</span>
+
+                        </div>
+
+                    </div>
+
+                    <h2>VerifyBag</h2>
+
+                </div>
+
+            </div>
+
+<header>
+
+            <nav class="navbar">
+
+                <a href="/" class="logo">
+
+            <div class="logo-icon">
+
+                <div class="shield">
+
+                    <span class="check">✓</span>
+
+                </div>
+
+            </div>
+
+            <div class="logo-text">
+
+                <span class="verify">Verify</span>
+
+                <span class="bag">Bag</span>
+
+            </div>
+
+        </a>
+
+        <div class="hamburger" id="hamburger">
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </div>
+
+
+        <div class="mobile-menu" id="navLinks">
+
+            <ul class="nav-links">
+
+                <li><a href="/">Home</a></li>
+
+                <li><a href="{% url 'about' %}">About</a></li>
+
+                <li><a href="{% url 'features' %}">Features</a></li>
+
+                <li><a href="{% url 'verify_drug' %}">Verify Drug</a></li>
+
+                <li><a href="{% url 'pricing' %}">Pricing</a></li>
+
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+
+            </ul>
+
+            <div class="nav-buttons">
+
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'verify_drug' %}" class="login-btn">
+                        Verify Drug
+                    </a>
+
+                    <a href="{% url 'logout' %}" class="register-btn">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}" class="login-btn">
+                        Login
+                    </a>
+
+                    <a href="{% url 'register' %}" class="register-btn">
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+<main>
+
+{% block content %}
+
+{% endblock %}
+
+</main>
+
+<footer>
+
+    <div class="footer-container">
+
+        <div>
+
+            <h3>VerifyBag</h3>
+
+            <p>
+                Helping pharmacies fight counterfeit drugs across Nigeria.
+            </p>
+
+        </div>
+
+        <div>
+
+            <h4>Quick Links</h4>
+
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'verify_drug' %}">Verify</a>
+            <a href="{% url 'pricing' %}">Pricing</a>
+
+        </div>
+
+        <div>
+
+            <h4>Support</h4>
+
+            <a href="#">Help Center</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+    </div>
+
+    <p class="copyright">
+
+        © 2026 VerifyBag. All Rights Reserved.
+
+    </p>
+
+</footer>
+
+<button id="scrollTopBtn" class="scroll-top">
+
+    ↑
+
+</button>
+
+<script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/theme.js' %}"></script>
+
+{% block js %}
+{% endblock %}
+
+</body>
+</html>

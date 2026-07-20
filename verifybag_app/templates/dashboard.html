@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+VerifyBag Dashboard
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <h1>
+                📊 Dashboard
+            </h1>
+
+            <p>
+                Welcome back,
+                {{ request.user.first_name|default:request.user.username }}
+            </p>
+
+        </div>
+
+        <a href="{% url 'verify_drug' %}" class="verify-now">
+
+            + Verify Drug
+
+        </a>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <h2>{{ total }}</h2>
+
+            <p>Total Verifications</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>{{ authentic }}</h2>
+
+            <p>Authentic Drugs</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>{{ counterfeit }}</h2>
+
+            <p>Counterfeit Drugs</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>{{ reports }}</h2>
+
+            <p>Fake Drug Reports</p>
+
+        </div>
+
+    </div>
+
+    <div class="chart-grid">
+
+    <div class="chart-card">
+
+        <h2>
+
+            📈 Monthly Verifications
+
+        </h2>
+
+        <canvas id="monthlyChart"></canvas>
+
+    </div>
+
+    <div class="chart-card">
+
+        <h2>
+
+            🥧 Verification Results
+
+        </h2>
+
+        <canvas id="pieChart"></canvas>
+
+    </div>
+
+    <div class="chart-card">
+
+        <h2>
+
+            📍 Fake Drug Reports by State
+
+        </h2>
+
+        <canvas id="stateChart"></canvas>
+
+    </div>
+
+</div>
+
+        <div class="chart-card">
+
+    <h2>
+
+        📊 Verification Results
+
+    </h2>
+
+    <div class="analytics-summary">
+
+        <div class="summary-box success">
+
+            <h3>
+
+                🟢 Authentic
+
+            </h3>
+
+            <h1>
+
+                {{ authentic }}
+
+            </h1>
+
+            <p>
+
+                Medicines verified successfully
+
+            </p>
+
+        </div>
+
+        <div class="summary-box danger">
+
+            <h3>
+
+                🔴 Counterfeit
+
+            </h3>
+
+            <h1>
+
+                {{ counterfeit }}
+
+            </h1>
+
+            <p>
+
+                Suspicious medicines detected
+
+            </p>
+
+        </div>
+
+        <div class="summary-box blue">
+
+            <h3>
+
+                📈 Success Rate
+
+            </h3>
+
+            <h1>
+
+                {{ success_rate }}%
+
+            </h1>
+
+            <p>
+
+                Overall verification accuracy
+
+            </p>
+
+        </div>
+
+        <div class="summary-box orange">
+
+            <h3>
+
+                📅 Today's Activity
+
+            </h3>
+
+            <h1>
+
+                {{ today_total }}
+
+            </h1>
+
+            <p>
+
+                Verifications today
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <div class="recent-card">
+
+        <h2>
+
+            Recent Activity
+
+        </h2>
+
+        <ul>
+
+        {% for item in recent %}
+
+            <li>
+
+                <strong>
+
+                    {{ item.nafdac_number }}
+
+                </strong>
+
+                —
+
+                {{ item.result }}
+
+                <br>
+
+                <small>
+
+                    {{ item.created_at }}
+
+                </small>
+
+            </li>
+
+        {% empty %}
+
+            <li>
+
+                No activity yet.
+
+            </li>
+
+        {% endfor %}
+
+        </ul>
+
+    </div>
+
+</section>
+
+<script>
+
+const months={{ months|safe }};
+
+const monthlyTotals={{ monthly_totals|safe }};
+
+const states={{ state_names|safe }};
+
+const stateTotals={{ state_totals|safe }};
+
+const authentic={{ authentic }};
+
+const counterfeit={{ counterfeit }};
+
+</script>
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+
+{% endblock %}

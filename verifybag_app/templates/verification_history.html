@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+VerifyBag | Verification History
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/verification_history.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="history-page">
+
+    <div class="history-container">
+
+        <!-- HEADER -->
+
+        <div class="history-header">
+
+            <div>
+
+                <h1>
+
+                    Verification History
+
+                </h1>
+
+                <p>
+
+                    View all medicines you have verified.
+
+                </p>
+
+            </div>
+
+            <a href="{% url 'verify_drug' %}" class="back-btn">
+
+                ← Verify Drug
+
+            </a>
+
+        </div>
+
+        <!-- SEARCH -->
+
+        <div class="search-card">
+
+            <input
+                type="text"
+                id="historySearch"
+                placeholder="Search by NAFDAC number or status...">
+
+        </div>
+
+        <!-- HISTORY LIST -->
+
+        <div class="history-list">
+
+            {% if verifications %}
+
+                {% for verification in verifications %}
+
+                <div class="history-item">
+
+                    <!-- IMAGE -->
+
+                    <div class="history-image">
+
+                        {% if verification.drug_image %}
+
+                        <img
+                            src="{{ verification.drug_image.url }}"
+                            alt="Drug">
+
+                        {% else %}
+
+                        <div class="no-image">
+
+                            📷
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                    <!-- DETAILS -->
+
+                    <div class="history-details">
+
+                        <h3>
+
+                            {{ verification.nafdac_number|default:"No NAFDAC Number" }}
+
+                        </h3>
+
+                        <p>
+
+                            Verified on {{ verification.created_at|date:"F d, Y - H:i" }}
+
+                        </p>
+
+                    </div>
+
+                    <!-- STATUS -->
+
+                    <div class="history-status">
+
+                        {% if verification.result == "Authentic" %}
+
+                        <span class="status authentic">
+
+                            ✅ Authentic
+
+                        </span>
+
+                        {% else %}
+
+                        <span class="status fake">
+
+                            ❌ Counterfeit
+
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                    <!-- DELETE BUTTON -->
+
+                    <div class="history-actions">
+
+                        <a
+                            href="{% url 'delete_verification' verification.id %}"
+                            class="delete-btn"
+                            onclick="return confirm('Are you sure you want to delete this verification?');">
+
+                            🗑 Delete
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-history">
+
+                    <h2>
+
+                        No Verification History
+
+                    </h2>
+
+                    <p>
+
+                        You haven't verified any medicines yet.
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/verification_history.js' %}"></script>
+{% endblock %}
