@@ -242,31 +242,36 @@ rippleButtons.forEach(button=>{
 
 });
 
-window.addEventListener("load", () => {
+const loader = document.getElementById("loader");
 
-    const loader = document.getElementById("loader");
+if (loader) {
 
-    const navigation =
-        performance.getEntriesByType("navigation")[0];
+    const navigation = performance.getEntriesByType("navigation")[0];
 
     if (navigation && navigation.type === "reload") {
 
-        setTimeout(() => {
+        window.addEventListener("load", function () {
 
-            loader.style.opacity = "0";
+            setTimeout(function () {
 
-            setTimeout(() => {
+                loader.style.opacity = "0";
+                loader.style.visibility = "hidden";
+                loader.style.pointerEvents = "none";
 
-                loader.style.display = "none";
+                setTimeout(function () {
 
-            }, 600);
+                    loader.remove();
 
-        }, 500);
+                }, 600);
+
+            }, 500);
+
+        });
 
     } else {
 
-        loader.style.display = "none";
+        loader.remove();
 
     }
 
-});
+}

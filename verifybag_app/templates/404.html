@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+404 | Page Not Found
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/404.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="error-page">
+
+    <div class="error-container">
+
+        <div class="error-icon">
+
+            🛡️
+
+        </div>
+
+        <h1>404</h1>
+
+        <h2>Oops! Page Not Found</h2>
+
+        <p>
+
+            The page you're looking for doesn't exist or may have been moved.
+
+        </p>
+
+        <a href="{% url 'home' %}" class="home-btn">
+
+            Back to Home
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
