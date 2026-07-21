@@ -1,0 +1,112 @@
+/* Dark mode overrides for VerifyBag - keep branding blue (#1565d8) */
+
+/* Base colors */
+.dark body{
+    background:#0b1220;
+    color:#cbd5e1;
+}
+
+.dark a{ color:inherit; }
+
+/* Navbar */
+.dark .navbar{
+    background:#071226;
+    box-shadow:0 10px 25px rgba(0,0,0,.6);
+}
+
+.dark .navbar.shrink{
+    background:rgba(2,6,23,.9);
+    box-shadow:0 15px 35px rgba(0,0,0,.7);
+}
+
+.dark .logo-text{ color:#e6eef9; }
+.dark .verify, .dark .bag{ color:#1565d8; }
+
+.dark .nav-links a{
+    color:#d1d5db;
+}
+
+.dark .nav-links a:hover{
+    color:#1565d8;
+}
+
+.dark .mobile-menu{ background:transparent; }
+
+/* Buttons */
+.dark .login-btn{
+    background:transparent;
+    color:#cbd5e1;
+    border-color:rgba(21,101,216,.6);
+}
+
+.dark .login-btn:hover{ background:rgba(21,101,216,.08); color:#fff; }
+
+.dark .register-btn{
+    background:#1565d8;
+    color:#fff;
+}
+
+.dark .register-btn:hover{ transform:translateY(-3px); filter:brightness(.95); }
+
+/* Mobile theme toggle spacing */
+.theme-toggle{
+    background:transparent;
+    color:inherit;
+    font-size:18px;
+    padding:8px 10px;
+    border-radius:8px;
+}
+
+.theme-toggle:hover{ background:rgba(255,255,255,.03); }
+
+/* Main content */
+.dark main{ background:transparent; }
+
+/* Cards, sections and common containers */
+.dark .card,
+.dark .section,
+.dark .container{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);
+    color:#cbd5e1;
+}
+
+/* Forms */
+.dark input, .dark textarea, .dark select{
+    background:#0f1724;
+    color:#e6eef9;
+    border:1px solid rgba(255,255,255,0.04);
+}
+
+.dark input::placeholder, .dark textarea::placeholder{ color:rgba(203,213,225,.5); }
+
+/* Footer (already dark but ensure contrast) */
+.dark footer{ background:#020617; color:#94a3b8; }
+.dark .footer-container a{ color:#9aa6bb; }
+.dark .footer-container a:hover{ color:#e6eef9; }
+
+/* Loader */
+.dark #loader{ background:#0b1220; }
+.dark .loader-content h2{ color:#e6eef9; }
+.dark .loader-content p{ color:#9aa6bb; }
+
+/* Scroll top */
+.dark .scroll-top{ background:#1565d8; box-shadow:0 12px 30px rgba(21,101,216,.24); }
+
+/* Tables */
+.dark table{ color:#e6eef9; }
+.dark thead{ color:#cbd5e1; }
+
+/* Images: soften shadows */
+.dark img{ filter:brightness(.97); }
+
+/* Misc tweaks for pages */
+.dark .verification-card, .dark .report-card{ background:#071226; }
+
+/* Ensure form errors are visible */
+.dark .errorlist li{ color:#ffb4b4; }
+
+/* Keep link accents blue for branding */
+.dark a.brand-link, .dark .highlight{ color:#1565d8; }
+
+/* Fallback: any element using body.dark selectors in old CSS still works because we add class to body too */
