@@ -1265,6 +1265,7 @@
         grid-template-columns:repeat(2,1fr);
 
     }
+    
 
     .hero-right{
         display: none;
@@ -2143,6 +2144,172 @@
     .faq-answer p{
 
         padding:0 20px 20px;
+
+    }
+
+}
+
+
+/* ==========================================
+   COUNTERFEIT SECTION RESPONSIVE
+========================================== */
+
+/* Tablets */
+@media (max-width:992px){
+
+    .problem{
+
+        padding:90px 6%;
+
+    }
+
+    .problem-container{
+
+        grid-template-columns:1fr;
+        gap:50px;
+
+    }
+
+    .problem-left{
+
+        text-align:center;
+
+    }
+
+    .problem-left h2{
+
+        font-size:42px;
+
+    }
+
+    .problem-buttons{
+
+        justify-content:center;
+        flex-wrap:wrap;
+
+    }
+
+    .problem-right{
+
+        grid-template-columns:repeat(2,1fr);
+        gap:20px;
+
+    }
+
+}
+
+
+/* Mobile */
+@media (max-width:768px){
+
+    .problem{
+
+        padding:80px 6%;
+
+    }
+
+    .problem-container{
+
+        grid-template-columns:1fr;
+        gap:40px;
+
+    }
+
+    .problem-left{
+
+        text-align:center;
+
+    }
+
+    .problem-left h2{
+
+        font-size:34px;
+        line-height:1.3;
+
+    }
+
+    .problem-left p{
+
+        font-size:16px;
+
+    }
+
+    .problem-buttons{
+
+        flex-direction:column;
+        gap:15px;
+        align-items:center;
+
+    }
+
+    .problem-buttons a{
+
+        width:100%;
+        max-width:300px;
+        text-align:center;
+
+    }
+
+    .problem-right{
+
+        grid-template-columns:1fr;
+        gap:20px;
+
+    }
+
+    .problem-card{
+
+        padding:30px;
+
+    }
+
+    .problem-card h3{
+
+        font-size:22px;
+
+    }
+
+}
+
+
+/* Small Phones */
+@media (max-width:480px){
+
+    .problem{
+
+        padding:70px 5%;
+
+    }
+
+    .problem-left h2{
+
+        font-size:28px;
+
+    }
+
+    .problem-left p{
+
+        font-size:15px;
+
+    }
+
+    .problem-card{
+
+        padding:25px;
+
+    }
+
+    .problem-icon{
+
+        width:60px;
+        height:60px;
+        font-size:26px;
+
+    }
+
+    .problem-card h3{
+
+        font-size:20px;
 
     }
 

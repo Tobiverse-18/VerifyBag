@@ -80,7 +80,7 @@ button{
 
     align-items:center;
 
-    padding:0 7%;
+    padding:0 5%;
 
     background:white;
 
@@ -111,7 +111,7 @@ button{
 
     height:65px;
 
-    padding:0 6%;
+    padding:0 5%;
 
     background:rgba(255,255,255,.96);
 
@@ -141,7 +141,7 @@ body.dark .navbar.shrink{
 
     display:flex;
 
-    gap:40px;
+    gap:24px;
 
 }
 
@@ -173,13 +173,13 @@ body.dark .navbar.shrink{
 
     align-items:center;
 
-    gap:40px;
+    gap:24px;
 
 }
 
 .login-btn{
 
-    padding:10px 24px;
+    padding:10px 16px;
 
     border:2px solid #1565d8;
 
@@ -203,7 +203,7 @@ body.dark .navbar.shrink{
 
     color:white;
 
-    padding:10px 24px;
+    padding:10px 16px;
 
     border-radius:8px;
 
@@ -457,6 +457,23 @@ footer{
 
 }
 
+@media (max-width:1200px){
+
+    .nav-links{
+        gap:18px;
+    }
+
+    .login-btn,
+    .register-btn{
+        padding:10px 18px;
+    }
+
+    .logo-text{
+        font-size:28px;
+    }
+
+}
+
 /* Mobile */
 
 @media (max-width:992px){
@@ -666,6 +683,8 @@ button{
     position:relative;
 
     overflow:hidden;
+
+    white-space: nowrap;
 
 }
 
