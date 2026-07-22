@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         formData.append("drug_image", file);
 
-        fetch("/ocr-scan/", {
+        fetch(OCR_SCAN_URL, {
 
             method: "POST",
 

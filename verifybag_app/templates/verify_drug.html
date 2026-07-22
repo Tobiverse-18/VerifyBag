@@ -490,5 +490,8 @@ AI SCAN OVERLAY
 {% endblock %}
 
 {% block js %}
+<script>
+const OCR_SCAN_URL = "{% url 'ocr_scan' %}";
+</script>
 <script src="{% static 'js/verify_drug.js' %}"></script>
 {% endblock %}
