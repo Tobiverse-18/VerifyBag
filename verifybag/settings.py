@@ -36,6 +36,7 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [".onrender.com", "localhost", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ["https://verifybag.onrender.com"]
 
 
 # Application definition
