@@ -9,13 +9,12 @@ from django.db.models.functions import TruncMonth
 from django.utils import timezone
 from django.http import JsonResponse
 import pytesseract
-from PIL import Image
 import re
 import os
-import pytesseract
 
-if os.name == 'nt':
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+import requests
+import os
+
 import resend
 import os
 resend.api_key = os.environ.get("RESEND_API_KEY")
@@ -209,16 +208,37 @@ def verify_drug(request):
 
         if image:
 
-            img = Image.open(image)
+            api_key = os.environ.get("OCR_SPACE_API_KEY")
 
-            extracted_text = pytesseract.image_to_string(img)
-
-            print(extracted_text)
-
-            match = re.search(
-                r"[A-Z]\d-\d{4}",
-                extracted_text.upper()
+            response = requests.post(
+                "https://api.ocr.space/parse/image",
+                files={
+                    "filename": image.read()
+                },
+                data={
+                    "apikey": api_key,
+                    "language": "eng"
+                }
             )
+
+            result = response.json()
+
+            if result.get("ParsedResults"):
+
+                extracted_text = result["ParsedResults"][0]["ParsedText"]
+
+                print(extracted_text)
+
+                match = re.search(
+                    r"[A-Z]\d-\d{4}",
+                    extracted_text.upper()
+                )
+
+                if match:
+
+                    detected_nafdac = match.group()
+
+            image.seek(0)
 
             if match:
 
@@ -265,32 +285,57 @@ from pytesseract import TesseractNotFoundError
 
 @login_required(login_url="login")
 def ocr_scan(request):
+
     if request.method == "POST":
+
         image = request.FILES.get("drug_image")
 
-        if image:
-            try:
-                img = Image.open(image)
-                text = pytesseract.image_to_string(img)
+        if not image:
 
-                match = re.search(r"[A-Z]\d-\d{4}", text.upper())
+            return JsonResponse({
+                "nafdac_number": ""
+            })
 
-                detected = match.group() if match else ""
+        api_key = os.environ.get("OCR_SPACE_API_KEY")
 
-                return JsonResponse({
-                    "nafdac_number": detected
-                })
+        response = requests.post(
+            "https://api.ocr.space/parse/image",
+            files={
+                "filename": image.read()
+            },
+            data={
+                "apikey": api_key,
+                "language": "eng"
+            }
+        )
 
-            except Exception as e:
-                print("OCR ERROR:", repr(e))
-                return JsonResponse({
-                    "error": str(e)
-                }, status=500)
+        result = response.json()
+
+        detected = ""
+
+        if result.get("ParsedResults"):
+
+            text = result["ParsedResults"][0]["ParsedText"]
+
+            print(text)
+
+            match = re.search(
+                r"[A-Z]\d-\d{4}",
+                text.upper()
+            )
+
+            if match:
+                detected = match.group()
+
+        return JsonResponse({
+            "nafdac_number": detected
+        })
 
     return JsonResponse({
         "nafdac_number": ""
     })
-    
+
+
 @login_required(login_url="login")
 def verification_history(request):
 
