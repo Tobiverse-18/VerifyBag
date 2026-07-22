@@ -12,8 +12,9 @@ import pytesseract
 from PIL import Image
 import re
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-from django.core.mail import send_mail
-from django.conf import settings
+import resend
+import os
+resend.api_key = os.environ.get("RESEND_API_KEY")
 
 
 from .forms import RegisterForm
@@ -111,26 +112,28 @@ def register(request):
 
                 user=user
             )
+            
+            try:
+                resend.Emails.send({
+                    "from": "VerifyBag <onboarding@resend.dev>",
+                    "to": [user.email],
+                    "subject": "🎉 Welcome to VerifyBag",
+                    "text": f"""
+                Hi {user.first_name},
 
-            send_mail(
-                "🎉 Welcome to VerifyBag",
-                f"""
-            Hi {user.first_name},
+                Welcome to VerifyBag!
 
-            Welcome to VerifyBag!
+                Your pharmacy account has been created successfully.
 
-            Your pharmacy account has been created successfully.
+                Please complete your pharmacy profile so our administrators can review and approve your pharmacy.
 
-            Please complete your pharmacy profile so our administrators can review and approve your pharmacy.
+                Thank you for helping fight counterfeit drugs in Nigeria.
 
-            Thank you for helping fight counterfeit drugs in Nigeria.
-
-            The VerifyBag Team
-            """,
-                settings.DEFAULT_FROM_EMAIL,
-                [user.email],
-                fail_silently=True,
-            )
+                The VerifyBag Team
+                """
+                })
+            except Exception as e:
+                print(f"Error sending email: {e}")
 
             messages.success(
 
@@ -556,34 +559,24 @@ def contact(request):
 
         message = request.POST.get("message")
 
-        send_mail(
+        try:
+            resend.Emails.send({
+                "from": "VerifyBag <onboarding@resend.dev>",
+                "to": ["verifybagteam@gmail.com"],
+                "subject": f"VerifyBag Contact Form: {subject}",
+                "text": f"""
+            New Contact Message
 
-            f"VerifyBag Contact Form: {subject}",
+            Name: {name}
+            Email: {email}
+            Subject: {subject}
 
-            f"""
-New Contact Message
-
-Name:
-{name}
-
-Email:
-{email}
-
-Subject:
-{subject}
-
-Message:
-
-{message}
-""",
-
-            settings.DEFAULT_FROM_EMAIL,
-
-            ["verifybagteam@gmail.com"],
-
-            fail_silently=True,
-
-        )
+            Message:
+            {message}
+            """
+            })
+        except Exception as e:
+            print(f"Error sending email: {e}")
 
         messages.success(
 
