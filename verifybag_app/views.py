@@ -257,46 +257,36 @@ def verify_drug(request):
 
 
 
+from pytesseract import TesseractNotFoundError
+
 @login_required(login_url="login")
 def ocr_scan(request):
-
     if request.method == "POST":
-
         image = request.FILES.get("drug_image")
 
-        detected = ""
-
         if image:
+            try:
+                img = Image.open(image)
+                text = pytesseract.image_to_string(img)
 
-            img = Image.open(image)
+                match = re.search(r"[A-Z]\d-\d{4}", text.upper())
 
-            text = pytesseract.image_to_string(img)
+                detected = match.group() if match else ""
 
-            print("========== OCR TEXT =========")
-            print(text)
-            print("==============================")
+                return JsonResponse({
+                    "nafdac_number": detected
+                })
 
-            match = re.search(
-                r"[A-Z]\d-\d{4}",
-                text.upper()
-            )
-
-            if match:
-
-                detected = match.group()
-
-        return JsonResponse({
-
-            "nafdac_number": detected
-
-        })
+            except Exception as e:
+                print("OCR ERROR:", repr(e))
+                return JsonResponse({
+                    "error": str(e)
+                }, status=500)
 
     return JsonResponse({
-
         "nafdac_number": ""
-
     })
-
+    
 @login_required(login_url="login")
 def verification_history(request):
 
