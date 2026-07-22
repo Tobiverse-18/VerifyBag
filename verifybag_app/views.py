@@ -11,7 +11,11 @@ from django.http import JsonResponse
 import pytesseract
 from PIL import Image
 import re
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+import os
+import pytesseract
+
+if os.name == 'nt':
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 import resend
 import os
 resend.api_key = os.environ.get("RESEND_API_KEY")
