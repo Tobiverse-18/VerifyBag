@@ -3,6 +3,7 @@
 # Create your models here.
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 class DrugVerification(models.Model):
@@ -12,8 +13,9 @@ class DrugVerification(models.Model):
         on_delete=models.CASCADE
     )
 
-    drug_image = models.ImageField(
-        upload_to="drug_images/"
+    from cloudinary.models import CloudinaryField
+    drug_image = CloudinaryField(
+        "drug_image"
     )
 
     nafdac_number = models.CharField(
@@ -152,8 +154,8 @@ class UserProfile(models.Model):
     blank=True
     )
 
-    profile_picture = models.ImageField(
-        upload_to="profiles/",
+    profile_picture = CloudinaryField(
+        "profile_picture",
         blank=True,
         null=True
     )
