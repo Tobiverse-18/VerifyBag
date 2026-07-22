@@ -129,7 +129,7 @@ def register(request):
             """,
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
-                fail_silently=False,
+                fail_silently=True,
             )
 
             messages.success(
@@ -581,7 +581,7 @@ Message:
 
             ["verifybagteam@gmail.com"],
 
-            fail_silently=False,
+            fail_silently=True,
 
         )
 
