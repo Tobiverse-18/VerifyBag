@@ -1,26 +1,27 @@
+import os
+import re
+import requests
+import resend
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.contrib.auth.decorators import login_required
-from .models import DrugVerification, ApprovedDrug, FakeDrugReport, UserProfile
+from django.http import JsonResponse
 from django.db.models import Count
 from django.db.models.functions import TruncMonth
-from django.utils import timezone
-from django.http import JsonResponse
-import pytesseract
-import re
-import os
 
-import requests
-import os
-
-import resend
-import os
-resend.api_key = os.environ.get("RESEND_API_KEY")
-
+from .models import (
+    DrugVerification,
+    ApprovedDrug,
+    FakeDrugReport,
+    UserProfile,
+)
 
 from .forms import RegisterForm
+
+resend.api_key = os.environ.get("RESEND_API_KEY")
 
 
 def home(request):
@@ -190,10 +191,6 @@ def verify_drug(request):
                 "Please upload a medicine image or enter a NAFDAC number."
             )
 
-            recent_verifications = DrugVerification.objects.filter(
-                user=request.user
-            ).order_by("-created_at")[:5]
-
             return render(
                 request,
                 "verify_drug.html",
@@ -206,47 +203,62 @@ def verify_drug(request):
                 }
             )
 
+        # OCR Scan
         if image:
 
-            api_key = os.environ.get("OCR_SPACE_API_KEY")
+            try:
 
-            response = requests.post(
-                "https://api.ocr.space/parse/image",
-                files={
-                    "filename": image.read()
-                },
-                data={
-                    "apikey": api_key,
-                    "language": "eng"
-                }
-            )
+                api_key = os.environ.get("OCR_SPACE_API_KEY")
 
-            result = response.json()
-
-            if result.get("ParsedResults"):
-
-                extracted_text = result["ParsedResults"][0]["ParsedText"]
-
-                print(extracted_text)
-
-                match = re.search(
-                    r"[A-Z]\d-\d{4}",
-                    extracted_text.upper()
+                response = requests.post(
+                    "https://api.ocr.space/parse/image",
+                    files={
+                        "filename": (
+                            image.name,
+                            image.read(),
+                            image.content_type
+                        )
+                    },
+                    data={
+                        "apikey": api_key,
+                        "language": "eng",
+                        "isOverlayRequired": False
+                    },
+                    timeout=30
                 )
 
-                if match:
+                result = response.json()
 
-                    detected_nafdac = match.group()
+                print("========== OCR RESPONSE ==========")
+                print(result)
+                print("==================================")
 
-            image.seek(0)
+                parsed = result.get("ParsedResults")
 
-            if match:
+                if parsed:
 
-                detected_nafdac = match.group()
+                    extracted_text = parsed[0].get("ParsedText", "")
 
-            image.seek(0)
+                    print(extracted_text)
 
-        nafdac = manual_nafdac or detected_nafdac
+                    match = re.search(
+                        r"[A-Z]\d-\d{4}",
+                        extracted_text.upper()
+                    )
+
+                    if match:
+
+                        detected_nafdac = match.group()
+
+                image.seek(0)
+
+            except Exception as e:
+
+                print("OCR ERROR:", e)
+
+                image.seek(0)
+
+        nafdac = manual_nafdac.strip() if manual_nafdac else detected_nafdac
 
         approved = ApprovedDrug.objects.filter(
             nafdac_number=nafdac,
@@ -254,18 +266,18 @@ def verify_drug(request):
         ).first()
 
         if approved:
-            result = "Authentic"
+            result_text = "Authentic"
         else:
-            result = "Counterfeit / Not Found"
+            result_text = "Counterfeit / Not Found"
 
         verification = DrugVerification.objects.create(
             user=request.user,
             drug_image=image,
             nafdac_number=nafdac,
-            result=result
+            result=result_text
         )
 
-        show_report = result == "Counterfeit / Not Found"
+        show_report = result_text == "Counterfeit / Not Found"
 
     return render(
         request,
@@ -280,42 +292,59 @@ def verify_drug(request):
     )
 
 
-
 from pytesseract import TesseractNotFoundError
 
 @login_required(login_url="login")
 def ocr_scan(request):
 
-    if request.method == "POST":
+    if request.method != "POST":
 
-        image = request.FILES.get("drug_image")
+        return JsonResponse({
+            "nafdac_number": ""
+        })
 
-        if not image:
+    image = request.FILES.get("drug_image")
 
-            return JsonResponse({
-                "nafdac_number": ""
-            })
+    if not image:
+
+        return JsonResponse({
+            "nafdac_number": ""
+        })
+
+    try:
 
         api_key = os.environ.get("OCR_SPACE_API_KEY")
 
         response = requests.post(
             "https://api.ocr.space/parse/image",
             files={
-                "filename": image.read()
+                "filename": (
+                    image.name,
+                    image.read(),
+                    image.content_type
+                )
             },
             data={
                 "apikey": api_key,
-                "language": "eng"
-            }
+                "language": "eng",
+                "isOverlayRequired": False
+            },
+            timeout=30
         )
 
         result = response.json()
 
+        print("========== OCR API ==========")
+        print(result)
+        print("=============================")
+
         detected = ""
 
-        if result.get("ParsedResults"):
+        parsed = result.get("ParsedResults")
 
-            text = result["ParsedResults"][0]["ParsedText"]
+        if parsed:
+
+            text = parsed[0].get("ParsedText", "")
 
             print(text)
 
@@ -325,15 +354,20 @@ def ocr_scan(request):
             )
 
             if match:
+
                 detected = match.group()
 
         return JsonResponse({
             "nafdac_number": detected
         })
 
-    return JsonResponse({
-        "nafdac_number": ""
-    })
+    except Exception as e:
+
+        print("OCR ERROR:", e)
+
+        return JsonResponse({
+            "nafdac_number": ""
+        })
 
 
 @login_required(login_url="login")
