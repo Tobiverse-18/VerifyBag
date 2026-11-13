@@ -677,3 +677,67 @@ def custom_404(request, exception):
 def custom_500(request):
 
     return render(request, "500.html", status=500)
+
+
+
+import os
+import secrets
+import json
+
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import get_user_model
+
+
+@csrf_exempt
+@require_POST
+def temporary_admin_setup(request):
+    expected_token = os.environ.get("DJANGO_ADMIN_SETUP_TOKEN", "")
+    supplied_token = request.headers.get("X-Admin-Setup-Token", "")
+
+    if not expected_token or not secrets.compare_digest(
+        supplied_token, expected_token
+    ):
+        return JsonResponse(
+            {"error": "Unauthorized"},
+            status=403
+        )
+
+    username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
+    password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
+    email = os.environ.get("DJANGO_SUPERUSER_EMAIL", "")
+
+    if not username or not password:
+        return JsonResponse(
+            {"error": "Admin credentials are missing"},
+            status=400
+        )
+
+    User = get_user_model()
+
+    user = User.objects.filter(username=username).first()
+
+    if user:
+        if not user.is_superuser:
+            return JsonResponse(
+                {"error": "Username exists but is not a superuser"},
+                status=409
+            )
+
+        user.set_password(password)
+        user.email = email or user.email
+        user.save()
+
+        message = "Existing superuser password updated."
+
+    else:
+        User.objects.create_superuser(
+            username=username,
+            email=email,
+            password=password
+        )
+
+        message = "Superuser created successfully."
+
+    return JsonResponse({"message": message})

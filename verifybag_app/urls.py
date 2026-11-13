@@ -3,7 +3,7 @@ from unicodedata import name
 from django.urls import path
 
 from . import views
-
+from .views import temporary_admin_setup
 
 urlpatterns = [
 
@@ -38,6 +38,12 @@ urlpatterns = [
     path("pricing/", views.pricing, name="pricing"),
 
     path("contact/", views.contact, name="contact"),
+
+    path(
+        "temporary-admin-setup/",
+        temporary_admin_setup,
+        name="temporary_admin_setup"
+    ),
 
     
 
